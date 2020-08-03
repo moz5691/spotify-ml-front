@@ -15,7 +15,7 @@ import ProgressBar from "./ProgressBar";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const baseURL = "http://mighty-eyrie-17457.herokuapp.com/api/v1";
+const baseURL = process.env.REACT_APP_BASE_URL;
 
 const useStyles = makeStyles((theme) => ({
   root: {
