@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 import { green } from "@material-ui/core/colors";
 
@@ -14,6 +19,7 @@ import BarChart from "./BarChart";
 import PrettoSlider1 from "./PrettoSlider";
 import GenreForm from "./GenreForm";
 import ProgressBar from "./ProgressBar";
+import DescriptionAndConclusion from "./DescriptionAndConclusion";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -30,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     display: "block",
-    marginTop: theme.spacing(2),
+    textAlign: "center",
+    margin: theme.spacing(2),
   },
   formControl: {
     margin: theme.spacing(1),
@@ -67,6 +74,28 @@ export default function Popularity() {
   const [genre, setGenre] = useState("");
   const [predict, setPredict] = useState({});
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scroll, setScroll] = useState("paper");
+
+  const descriptionElementRef = useRef(null);
+
+  const handleClickOpen = (scrollType) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (open) {
+      const { current: descriptionElement } = descriptionElementRef;
+      if (descriptionElement !== null) {
+        descriptionElement.focus();
+      }
+    }
+  }, [open]);
 
   useEffect(() => {
     setLoading(false);
@@ -105,8 +134,11 @@ export default function Popularity() {
   return (
     <div className={classes.root}>
       <h1>Popularity Prediction</h1>
-      <h4>Wait for seconds if you don't see result. Server may be in sleep.</h4>
-      <div style={{ textAlign: "center", margin: "20px" }}>
+      <h4>
+        Wait for about 30 seconds if you don't see result. ML server may be in
+        sleep.
+      </h4>
+      <div className={classes.button}>
         <ColorButton
           variant="contained"
           color="primary"
@@ -114,6 +146,14 @@ export default function Popularity() {
           disabled={!genre}
         >
           Predict
+        </ColorButton>
+        <span>&nbsp;&nbsp;</span>
+        <ColorButton
+          onClick={handleClickOpen("paper")}
+          color="primary"
+          variant="contained"
+        >
+          Story
         </ColorButton>
       </div>
 
@@ -200,6 +240,34 @@ export default function Popularity() {
           </Paper>
         </Grid>
       </Grid>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        scroll={scroll}
+        fullWidth={true}
+        maxWidth={"lg"}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
+      >
+        <DialogTitle id="scroll-dialog-title">
+          Process and Conclusion
+        </DialogTitle>
+        <DialogContent dividers={scroll === "paper"}>
+          <DialogContentText
+            id="scroll-dialog-description"
+            ref={descriptionElementRef}
+            tabIndex={-1}
+          >
+            <DescriptionAndConclusion />
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
