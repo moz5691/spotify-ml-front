@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
+import { green } from "@material-ui/core/colors";
+
 import PopularFeatureSelection from "./PopularFeatureSelection";
-import PopularityResult from "./PopularityResult";
+// import PopularityResult from "./PopularityResult";
 import BarChart from "./BarChart";
 import PrettoSlider1 from "./PrettoSlider";
 import GenreForm from "./GenreForm";
@@ -41,6 +43,16 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
 }));
+
+const ColorButton = withStyles((theme) => ({
+  root: {
+    color: theme.palette.getContrastText(green[500]),
+    backgroundColor: green[500],
+    "&:hover": {
+      backgroundColor: green[700],
+    },
+  },
+}))(Button);
 
 export default function Popularity() {
   const classes = useStyles();
@@ -95,14 +107,14 @@ export default function Popularity() {
       <h1>Popularity Prediction</h1>
       <h4>Wait for seconds if you don't see result. Server may be in sleep.</h4>
       <div style={{ textAlign: "center", margin: "20px" }}>
-        <Button
-          variant="outlined"
+        <ColorButton
+          variant="contained"
           color="primary"
           onClick={() => handleSubmit()}
           disabled={!genre}
         >
           Predict
-        </Button>
+        </ColorButton>
       </div>
 
       <Grid container spacing={3}>
@@ -181,7 +193,7 @@ export default function Popularity() {
               <ProgressBar />
             ) : (
               <>
-                <PopularityResult predict={predict} />
+                {/* <PopularityResult predict={predict} /> */}
                 <BarChart predict={predict} />
               </>
             )}
