@@ -54,7 +54,14 @@ const PrettoSlider = withStyles({
 // a / b * x + c
 //
 
-export default function CustomizedSlider({ title, handleEvent, a, b, c }) {
+export default function CustomizedSlider({
+  title,
+  handleEvent,
+  a,
+  b,
+  c,
+  value,
+}) {
   const classes = useStyles();
 
   return (
@@ -69,9 +76,10 @@ export default function CustomizedSlider({ title, handleEvent, a, b, c }) {
         max={100}
         valueLabelFormat={(x) => (a * (x / b) + c).toFixed(2)}
         onChange={(e, value) => {
-          console.log("loudness", (a * (value / b) + c).toFixed(2));
+          console.log("value", (a * (value / b) + c).toFixed(2));
           handleEvent(a * (value / b) + c);
         }}
+        value={(b * (value - c)) / a}
       />
     </>
   );

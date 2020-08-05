@@ -69,7 +69,7 @@ export default function Popularity() {
   const [energy, setEnergy] = useState(0.5);
   const [instrumentalness, setInstrumentalness] = useState(0.5);
   const [liveness, setLiveness] = useState(0.5);
-  const [loudness, setLoudness] = useState(0.5);
+  const [loudness, setLoudness] = useState(-24);
   const [speechiness, setSpeechiness] = useState(0.5);
   const [genre, setGenre] = useState("");
   const [predict, setPredict] = useState({});
@@ -100,6 +100,17 @@ export default function Popularity() {
   useEffect(() => {
     setLoading(false);
   }, [predict]);
+
+  useEffect(() => {
+    setAcousticness(0.5);
+    setDanceability(0.5);
+    setEnergy(0.5);
+    setInstrumentalness(0.5);
+    setLiveness(0.5);
+    setLoudness(-24);
+    setSpeechiness(0.5);
+    // setLoading(true);
+  }, [genre]);
 
   const handleGenreChange = (e) => {
     setGenre(e.target.value);
@@ -166,6 +177,7 @@ export default function Popularity() {
               a={1}
               b={100}
               c={0}
+              value={acousticness}
             />
             <PrettoSlider1
               handleEvent={setDanceability}
@@ -173,6 +185,7 @@ export default function Popularity() {
               a={1}
               b={100}
               c={0}
+              value={danceability}
             />
             <PrettoSlider1
               handleEvent={setEnergy}
@@ -180,6 +193,7 @@ export default function Popularity() {
               a={1}
               b={100}
               c={0}
+              value={energy}
             />
             <PrettoSlider1
               handleEvent={setInstrumentalness}
@@ -187,6 +201,7 @@ export default function Popularity() {
               a={1}
               b={100}
               c={0}
+              value={instrumentalness}
             />
             <PrettoSlider1
               handleEvent={setLiveness}
@@ -194,6 +209,7 @@ export default function Popularity() {
               a={1}
               b={100}
               c={0}
+              value={liveness}
             />
             <PrettoSlider1
               handleEvent={setLoudness}
@@ -201,6 +217,7 @@ export default function Popularity() {
               a={0.557}
               b={1}
               c={-52}
+              value={loudness}
             />
             <PrettoSlider1
               handleEvent={setSpeechiness}
@@ -208,6 +225,7 @@ export default function Popularity() {
               a={1}
               b={100}
               c={0}
+              value={speechiness}
             />
           </Paper>
         </Grid>
