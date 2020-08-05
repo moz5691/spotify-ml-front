@@ -1,10 +1,8 @@
 import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import {
   Chart,
   BarSeries,
-  Title,
   ArgumentAxis,
   ValueAxis,
   Tooltip,
@@ -14,11 +12,12 @@ import { Animation, EventTracker } from "@devexpress/dx-react-chart";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "30px",
-    width: 200 + theme.spacing(3) * 2,
+    width: "100%",
+    height: theme.spacing(3),
+    textAlign: "center",
   },
   margin: {
-    height: theme.spacing(3),
+    top: theme.spacing(5),
   },
   button: {
     display: "block",
@@ -35,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const labelStyle = { fill: "#BBDEFB" };
+const labelStyle = { fill: "#BBDEFB", fontSize: "1.5em" };
 
 // const getPath = (x, width, y, y1) => `M ${x} ${y1}
 //    L ${width + x} ${y1}
@@ -76,7 +75,7 @@ const BarWithLabel = ({
         textAnchor="middle"
         style={labelStyle}
       >
-        {value.toFixed(2)}
+        {value.toFixed(0) + "%"}
       </Chart.Label>
     </React.Fragment>
   );
@@ -115,21 +114,24 @@ export default function BarChart({ predict }) {
   ];
 
   return (
-    <Paper className={classes.root}>
+    <div className={`${classes.root}  `}>
+      {/* <Paper> */}
+      <h2>Prediction (%)</h2>
       <Chart data={chartData}>
         <ArgumentAxis />
-        <ValueAxis max={3} />
+        <ValueAxis max={7} />
 
         <BarSeries
           valueField="probability"
           argumentField="popularity"
           pointComponent={BarWithLabel}
         ></BarSeries>
-        <Title text="Prediction(%)" />
+        {/* <Title text="Prediction (%)" /> */}
         <Animation />
         <EventTracker />
         <Tooltip />
       </Chart>
-    </Paper>
+      {/* </Paper> */}
+    </div>
   );
 }
