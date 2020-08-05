@@ -147,13 +147,13 @@ export default function Popularity() {
         >
           Predict
         </ColorButton>
-        <span>&nbsp;&nbsp;</span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <ColorButton
           onClick={handleClickOpen("paper")}
           color="primary"
           variant="contained"
         >
-          Story
+          Epilogue
         </ColorButton>
       </div>
 
