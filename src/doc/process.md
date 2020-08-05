@@ -41,6 +41,8 @@
 
 ![](./docImages/production_pipeline.png)
 
+    Backend link: https://github.com/moz5691/spotify-ml
+
 ## Conclusion
 
 ### 1. Creating a model takes a lot of effort.
@@ -49,7 +51,7 @@
 
 ### 3. Any redundant variables yield side effect (high cost of CPU, big memory usage, low accuracy etc..).
 
-### 4. Import to try different ML algorithms
+### 4. Important to try different ML algorithms.
 
 ### 5. Consider computing power and memroy required for the target productoin server.
 
