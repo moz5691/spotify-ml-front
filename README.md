@@ -1,4 +1,4 @@
-# Spotify-Ml-Font
+# Spotify-ML-Front
 
 ## This repo is frontend part of spotify-ml repo.
 
@@ -16,6 +16,4 @@
 
 ## To start
 
-    ```sh
     npm start
-    ```
