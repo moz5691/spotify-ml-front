@@ -10,6 +10,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Divider from "@material-ui/core/Divider";
 
 import { green } from "@material-ui/core/colors";
 
@@ -145,10 +146,7 @@ export default function Popularity() {
   return (
     <div className={classes.root}>
       <h1>Popularity Prediction</h1>
-      <h4>
-        Wait for about 30 seconds if you don't see result. ML server may be in
-        sleep.
-      </h4>
+      <Divider />
       <div className={classes.button}>
         <ColorButton
           variant="contained"
