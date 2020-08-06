@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import CloudOffIcon from "@material-ui/icons/CloudOff";
 import CloudQueueIcon from "@material-ui/icons/CloudQueue";
 import { green, red } from "@material-ui/core/colors";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import Popularity from "./components/Popularity";
 import useInterval from "./hooks/useInterval";
@@ -54,16 +55,22 @@ function App() {
         justify="space-between"
         alignItems="flex-start"
       >
-        <Switch
-          checked={darkState}
-          onChange={handleThemeChange}
-          color="secondary"
-        />
+        <Tooltip title="Toggle Light/Dark mode" placement="bottom">
+          <Switch
+            checked={darkState}
+            onChange={handleThemeChange}
+            color="secondary"
+          />
+        </Tooltip>
         <div style={{ paddingRight: 20, paddingTop: 10 }}>
           {healthOk ? (
-            <CloudQueueIcon style={{ color: green[500] }} />
+            <Tooltip title="ML Server is healthy" placement="bottom">
+              <CloudQueueIcon style={{ color: green[500] }} />
+            </Tooltip>
           ) : (
-            <CloudOffIcon style={{ color: red[500] }} />
+            <Tooltip title="ML Server is unhealthy" placement="bottom">
+              <CloudOffIcon style={{ color: red[500] }} />
+            </Tooltip>
           )}
         </div>
       </Grid>
