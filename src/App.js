@@ -16,10 +16,16 @@ import useInterval from "./hooks/useInterval";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
+const pingShortInterval = 5000; // 5 seconds
+const pingLongInterval = 60000; // 60 seconds
+
 function App() {
   const [darkState, setDarkState] = useState(true);
 
   const [healthOk, setHealthOk] = useState(false);
+
+  // initial ping interval is 5000msec, increase to 15000 if the system is already healthy
+  const [pingInterval, setPingInterval] = useState(pingShortInterval);
 
   const palletType = darkState ? "dark" : "light";
   const darkTheme = createMuiTheme({
@@ -37,6 +43,13 @@ function App() {
       const res = await axios.get(`${baseURL}/ping`);
       console.log("response --->", res.status);
       res.status === 200 ? setHealthOk(true) : setHealthOk(false);
+      if (healthOk) {
+        setPingInterval(pingLongInterval);
+        console.log("ping long... healthy... check in every 60 sec");
+      } else {
+        setPingInterval(pingShortInterval);
+        console.log("ping short... unhealthy.. check in every 5 sec");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +57,7 @@ function App() {
 
   useInterval(() => {
     healthCheck();
-  }, [5000]);
+  }, [pingInterval]);
 
   return (
     <ThemeProvider theme={darkTheme}>
