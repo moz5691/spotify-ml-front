@@ -87,11 +87,44 @@ export default function BarChart({ predict }) {
   if (!predict.probability) {
     return (
       <div>
-        <h3>Instruction</h3>
+        <h2>
+          {" "}
+          <span role="img" aria-label="scroll">
+            📜
+          </span>{" "}
+          Instruction
+        </h2>
+
         <div style={{ textAlign: "left" }}>
-          <h4>* Select scales of music feasures</h4>
-          <h4>* Select genre of music</h4>
-          <h4>* Click on PREDICT button</h4>
+          <h3>
+            <span role="img" aria-label="violin">
+              {" "}
+              🎻
+            </span>{" "}
+            Select{" "}
+            <span style={{ color: "green" }}>
+              <u>GENRE</u>
+            </span>{" "}
+            of music
+          </h3>
+          <h3>
+            <span role="img" aria-label="musical notes"></span>
+            🎶 Select scales of{" "}
+            <span style={{ color: "green" }}>
+              <u>FEATURES</u>
+            </span>
+          </h3>
+          <h3>
+            <span role="img" aria-label="check box">
+              {" "}
+              &#9989;
+            </span>{" "}
+            Click on{" "}
+            <span style={{ color: "green" }}>
+              <u>PREDICT</u>
+            </span>{" "}
+            button
+          </h3>
           <h4>* Loudness unit is dB (decibel)</h4>
           <h4>* All other features are 0 to 1 scale</h4>
         </div>
