@@ -157,13 +157,13 @@ export default function Popularity() {
           Predict
         </ColorButton>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <ColorButton
+        <Button
           onClick={handleClickOpen("paper")}
-          color="primary"
+          color="default"
           variant="contained"
         >
-          Epilogue
-        </ColorButton>
+          Method
+        </Button>
       </div>
 
       <Grid container spacing={3}>
@@ -187,7 +187,7 @@ export default function Popularity() {
             />
             <PrettoSlider1
               handleEvent={setEnergy}
-              title={"Engery"}
+              title={"Energy"}
               a={1}
               b={100}
               c={0}

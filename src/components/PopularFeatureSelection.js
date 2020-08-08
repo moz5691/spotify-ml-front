@@ -45,8 +45,12 @@ export default function PopularFeatureSelection({
       <Table className={classes.table} size="medium" aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Feature</TableCell>
-            <TableCell align="right">Selection</TableCell>
+            <TableCell>
+              <strong>Feature</strong>
+            </TableCell>
+            <TableCell align="right">
+              <strong>Selection</strong>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -66,7 +66,7 @@ export default function GenreForm({ genre, handleGenreChange }) {
           <MenuItem value={"Country"}>Country</MenuItem>
           <MenuItem value={"Dance"}>Dance</MenuItem>
           <MenuItem value={"Electronic"}>Electronic</MenuItem>
-          <MenuItem value={"Folk"}></MenuItem>
+          <MenuItem value={"Folk"}>Folk</MenuItem>
           <MenuItem value={"Hip-Hop"}>Hip-Hop</MenuItem>
           <MenuItem value={"Indie"}>Indie</MenuItem>
           <MenuItem value={"Jazz"}>Jazz</MenuItem>
